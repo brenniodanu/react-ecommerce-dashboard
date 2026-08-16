@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+/* --- SLIDER PRODUK HORIZONTAL (KHUSUS HP & TABLET) --- */
+.product-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 5px 20px 5px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar kecil & halus */
+.product-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.product-slider::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.product-card {
+  flex: 0 0 240px; /* Ukuran tetap per card di HP/Tablet agar bisa digeser */
+  scroll-snap-align: start;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* --- DI LAPTOP / DESKTOP (Min. 768px) OTOMATIS JADI GRID --- */
+@media (min-width: 768px) {
+  .product-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    overflow-x: visible;
+    padding: 10px 0;
+  }
+
+  .product-card {
+    flex: unset;
+  }
+}
