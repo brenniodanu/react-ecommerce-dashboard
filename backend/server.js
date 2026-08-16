@@ -67,11 +67,16 @@ app.post('/api/auth/google', async (req, res) => {
 // Pendaftaran Router API Lainnya
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/cart', cartRoutes); 
+app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 
-// Menjalankan Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+// Menjalankan Server (Hanya aktif di laptop/lokal, dilewati saat di Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
+
+// WAJIB: Export app agar bisa dibaca oleh Vercel Serverless
+module.exports = app;
