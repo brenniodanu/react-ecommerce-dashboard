@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: '/api', // Menggunakan path relatif Vercel
 });
 
-// Otomatis menempelkan token JWT dari localStorage jika ada
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem('token');
   if (token) {
